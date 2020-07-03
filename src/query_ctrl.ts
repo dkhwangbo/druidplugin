@@ -47,7 +47,8 @@ export class DruidQueryCtrl extends QueryCtrl {
       "doubleMax": _.partial(this.validateSimpleAggregator.bind(this), 'doubleMax'),
       "approxHistogramFold": this.validateApproxHistogramFoldAggregator.bind(this),
       "hyperUnique": _.partial(this.validateSimpleAggregator.bind(this), 'hyperUnique'),
-      "thetaSketch": this.validateThetaSketchAggregator.bind(this)
+      "thetaSketch": this.validateThetaSketchAggregator.bind(this),
+      "filtered": _.partial(this.validateFilteredAggregator.bind(this), 'filtered')
     };
     postAggregatorValidators = {
       "arithmetic": this.validateArithmeticPostAggregator.bind(this),
@@ -482,6 +483,17 @@ export class DruidQueryCtrl extends QueryCtrl {
     validateThetaSketchAggregator(target) {
       var err = this.validateSimpleAggregator('thetaSketch', target);
       if (err) { return err;}
+      return null;
+    }
+
+    validateFilteredAggregator(target) {
+      if (!target.currentAggregator.filter) {
+        return "Must provide a filter for filtered aggregator.";
+      }
+      if (!target.currentAggregator.aggregator) {
+        return "Must provide an aggregator for filtered aggregator.";
+      }
+
       return null;
     }
 
