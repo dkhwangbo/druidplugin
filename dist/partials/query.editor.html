@@ -1,5 +1,26 @@
-<query-editor-row query-ctrl="ctrl" can-collapse="false">
+<query-editor-row query-ctrl="ctrl" can-collapse="false" has-text-edit-mode="true">
+<div ng-if="ctrl.target.rawQuery">
+ <div class="gf-form">
+    <textarea rows="3" class="gf-form-input" ng-model="ctrl.target.query" spellcheck="false" placeholder="Druid SQL Query" ng-model-onblur ng-change="ctrl.refresh()"></textarea>
+  </div>
   <div class="gf-form-inline">
+    <div class="gf-form">
+      <label class="gf-form-label query-keyword">FORMAT AS</label>
+      <div class="gf-form-select-wrapper">
+        <select class="gf-form-input gf-size-auto" ng-model="ctrl.target.resultFormat" ng-options="f.value as f.text for f in ctrl.resultFormats" ng-change="ctrl.refresh()"></select>
+      </div>
+    </div>
+    <div class="gf-form max-width-25"  ng-hide="ctrl.target.resultFormat === 'table'">
+      <label class="gf-form-label query-keyword">ALIAS BY</label>
+      <input type="text" class="gf-form-input" ng-model="ctrl.target.alias" spellcheck='false' placeholder="Naming pattern" ng-blur="ctrl.refresh()">
+    </div>
+    <div class="gf-form gf-form--grow">
+      <div class="gf-form-label gf-form-label--grow"></div>
+    </div>
+  </div>
+</div>
+<div ng-if="!ctrl.target.rawQuery">
+  <div class="gf-form-inline" >
     <div class="gf-form max-width-20">
       <label class="gf-form-label query-keyword width-9">
         Datasource
@@ -265,7 +286,7 @@
       </label>
     </div>
 
-    <div class="gf-form" ng-repeat="aggregator in ctrl.target.aggregators track by $index" class="gf-form">
+    <div class="gf-form" ng-repeat="aggregator in ctrl.target.aggregators track by $index">
       <label class="gf-form-label" ng-if="aggregator.hidden">Hidden&nbsp;(&nbsp;</label>
       <div ng-switch on="aggregator.type">
         <div ng-switch-when="count">
@@ -378,6 +399,17 @@
           </a>
           </label>
         </div>
+        <div ng-switch-when="filtered">
+          <label class="gf-form-label">
+            {{aggregator.type}}:&nbsp;filter&nbsp;=&nbsp;{{aggregator.filter}},&nbsp;aggregator&nbsp;=&nbsp;{{aggregator.aggregator}}
+            <a ng-click="ctrl.editAggregator($index)">
+              <i class="fa fa-pencil"></i>
+            </a>
+            <a ng-click="ctrl.removeAggregator($index)">
+              <i class="fa fa-remove"></i>
+            </a>
+          </label>
+        </div>
       </div>
       <label class="gf-form-label" ng-if="aggregator.hidden">&nbsp;)</label>
     </div>
@@ -443,6 +475,11 @@
       <input type="text" ng-switch-when="thetaSketch" class="input-small gf-form-input width-10" spellcheck='false' ng-model="ctrl.target.currentAggregator.fieldName" ng-blur="ctrl.targetBlur()" placeholder="metric name" bs-typeahead="ctrl.getMetrics" data-min-length=0>
       <gf-form-switch ng-switch-when="thetaSketch" class="gf-form" label="isInputThetaSketch" label-class="query-keyword" checked="ctrl.target.currentAggregator.isInputThetaSketch"></gf-form-switch>
       <input type="text" ng-switch-when="thetaSketch" class="input-small gf-form-input width-10" spellcheck='false' ng-model="ctrl.target.currentAggregator.size" ng-blur="ctrl.targetBlur()" placeholder="size" data-min-length=0>
+    </div>
+    <div class="gf-form" ng-show="ctrl.addAggregatorMode" ng-switch on="ctrl.target.currentAggregator.type">
+      <input type="text" ng-switch-when="filtered" class="input-small gf-form-input width-15" spellcheck='false' ng-model="ctrl.target.currentAggregator.filter" placeholder="filter" ng-blur="ctrl.targetBlur()">
+      <input type="text" ng-switch-when="filtered" class="input-small gf-form-input width-15" spellcheck='false' ng-model="ctrl.target.currentAggregator.aggregator" placeholder="aggregator" ng-blur="ctrl.targetBlur()">
+      <gf-form-switch ng-switch-when="filtered" class="gf-form" label="Hidden" label-class="query-keyword" checked="ctrl.target.currentAggregator.hidden"></gf-form-switch>
     </div>
     <div class="gf-form" ng-show="ctrl.addAggregatorMode">
       <label class="gf-form-label">
