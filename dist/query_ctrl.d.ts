@@ -113,4 +113,5 @@ export declare class DruidQueryCtrl extends QueryCtrl {
     validateQuantilePostAggregator(target: any): string;
     validateArithmeticPostAggregator(target: any): string;
     validateTarget(): any;
+    toggleEditorMode(): void;
 }
