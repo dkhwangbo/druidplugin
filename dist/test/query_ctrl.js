@@ -33,7 +33,8 @@ var DruidQueryCtrl = (function (_super) {
             "doubleMax": lodash_1.default.partial(this.validateSimpleAggregator.bind(this), 'doubleMax'),
             "approxHistogramFold": this.validateApproxHistogramFoldAggregator.bind(this),
             "hyperUnique": lodash_1.default.partial(this.validateSimpleAggregator.bind(this), 'hyperUnique'),
-            "thetaSketch": this.validateThetaSketchAggregator.bind(this)
+            "thetaSketch": this.validateThetaSketchAggregator.bind(this),
+            "filtered": lodash_1.default.partial(this.validateFilteredAggregator.bind(this), 'filtered')
         };
         this.postAggregatorValidators = {
             "arithmetic": this.validateArithmeticPostAggregator.bind(this),
@@ -410,6 +411,15 @@ var DruidQueryCtrl = (function (_super) {
         var err = this.validateSimpleAggregator('thetaSketch', target);
         if (err) {
             return err;
+        }
+        return null;
+    };
+    DruidQueryCtrl.prototype.validateFilteredAggregator = function (target) {
+        if (!target.currentAggregator.filter) {
+            return "Must provide a filter for filtered aggregator.";
+        }
+        if (!target.currentAggregator.aggregator) {
+            return "Must provide an aggregator for filtered aggregator.";
         }
         return null;
     };
