@@ -487,10 +487,10 @@ export class DruidQueryCtrl extends QueryCtrl {
     }
 
     validateFilteredAggregator(target) {
-      if (!target.currentAggregator.filter) {
+      if (!target.currentAggregator.ffilter) {
         return "Must provide a filter for filtered aggregator.";
       }
-      if (!target.currentAggregator.aggregator) {
+      if (!target.currentAggregator.faggregator) {
         return "Must provide an aggregator for filtered aggregator.";
       }
 
