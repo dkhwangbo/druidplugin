@@ -44,7 +44,7 @@ System.register(['lodash', './sdk/sdk'], function(exports_1) {
                         "approxHistogramFold": this.validateApproxHistogramFoldAggregator.bind(this),
                         "hyperUnique": lodash_1["default"].partial(this.validateSimpleAggregator.bind(this), 'hyperUnique'),
                         "thetaSketch": this.validateThetaSketchAggregator.bind(this),
-                        "filtered": lodash_1["default"].partial(this.validateFilteredAggregator.bind(this), 'filtered')
+                        "filtered": this.validateFilteredAggregator.bind(this)
                     };
                     this.postAggregatorValidators = {
                         "arithmetic": this.validateArithmeticPostAggregator.bind(this),
@@ -236,7 +236,6 @@ System.register(['lodash', './sdk/sdk'], function(exports_1) {
                     }
                     this.target.errors = this.validateTarget();
                     if (!this.target.errors.currentAggregator) {
-                        //Add new aggregator to the list
                         this.target.aggregators.push(this.target.currentAggregator);
                         this.clearCurrentAggregator();
                         this.addAggregatorMode = false;
@@ -425,12 +424,7 @@ System.register(['lodash', './sdk/sdk'], function(exports_1) {
                     return null;
                 };
                 DruidQueryCtrl.prototype.validateFilteredAggregator = function (target) {
-                    if (!target.currentAggregator.filter) {
-                        return "Must provide a filter for filtered aggregator.";
-                    }
-                    if (!target.currentAggregator.aggregator) {
-                        return "Must provide an aggregator for filtered aggregator.";
-                    }
+                    // pass
                     return null;
                 };
                 DruidQueryCtrl.prototype.validateSimplePostAggregator = function (type, target) {

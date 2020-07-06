@@ -48,7 +48,7 @@ export class DruidQueryCtrl extends QueryCtrl {
       "approxHistogramFold": this.validateApproxHistogramFoldAggregator.bind(this),
       "hyperUnique": _.partial(this.validateSimpleAggregator.bind(this), 'hyperUnique'),
       "thetaSketch": this.validateThetaSketchAggregator.bind(this),
-      "filtered": _.partial(this.validateFilteredAggregator.bind(this), 'filtered')
+      "filtered": this.validateFilteredAggregator.bind(this)
     };
     postAggregatorValidators = {
       "arithmetic": this.validateArithmeticPostAggregator.bind(this),
@@ -275,7 +275,6 @@ export class DruidQueryCtrl extends QueryCtrl {
 
       this.target.errors = this.validateTarget();
       if (!this.target.errors.currentAggregator) {
-        //Add new aggregator to the list
         this.target.aggregators.push(this.target.currentAggregator);
         this.clearCurrentAggregator();
         this.addAggregatorMode = false;
@@ -487,13 +486,7 @@ export class DruidQueryCtrl extends QueryCtrl {
     }
 
     validateFilteredAggregator(target) {
-      if (!target.currentAggregator.filter) {
-        return "Must provide a filter for filtered aggregator.";
-      }
-      if (!target.currentAggregator.aggregator) {
-        return "Must provide an aggregator for filtered aggregator.";
-      }
-
+      // pass
       return null;
     }
 
