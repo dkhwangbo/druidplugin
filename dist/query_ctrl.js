@@ -44,7 +44,7 @@ System.register(['lodash', './sdk/sdk'], function(exports_1) {
                         "approxHistogramFold": this.validateApproxHistogramFoldAggregator.bind(this),
                         "hyperUnique": lodash_1["default"].partial(this.validateSimpleAggregator.bind(this), 'hyperUnique'),
                         "thetaSketch": this.validateThetaSketchAggregator.bind(this),
-                        "filtered": lodash_1["default"].partial(this.validateFilteredAggregator.bind(this), 'filtered')
+                        "filtered": this.validateFilteredAggregator.bind(this)
                     };
                     this.postAggregatorValidators = {
                         "arithmetic": this.validateArithmeticPostAggregator.bind(this),
@@ -425,10 +425,10 @@ System.register(['lodash', './sdk/sdk'], function(exports_1) {
                     return null;
                 };
                 DruidQueryCtrl.prototype.validateFilteredAggregator = function (target) {
-                    if (!target.currentAggregator.filter) {
+                    if (!target.currentAggregator.filterSpec) {
                         return "Must provide a filter for filtered aggregator.";
                     }
-                    if (!target.currentAggregator.aggregator) {
+                    if (!target.currentAggregator.aggrSpec) {
                         return "Must provide an aggregator for filtered aggregator.";
                     }
                     return null;
