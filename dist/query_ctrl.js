@@ -238,10 +238,23 @@ System.register(['lodash', './sdk/sdk'], function(exports_1) {
                     if (!this.target.errors.currentAggregator) {
                         //Add new aggregator to the list
                         if (this.target.currentAggregator.type === "filtered") {
-                            this.target.currentAggregator.filterSpec = JSON.stringify(this.target.currentAggregator.filterSpec);
-                            this.target.currentAggregator.aggrSpec = JSON.stringify(this.target.currentAggregator.aggrSpec);
+                            var temp = {};
+                            temp["type"] = this.target.currentAggregator.type;
+                            var tempFilter = {};
+                            tempFilter["type"] = this.target.currentAggregator.filterType;
+                            tempFilter["dimension"] = this.target.currentAggregator.filterDimension;
+                            tempFilter["value"] = this.target.currentAggregator.filterValue;
+                            temp["filter"] = tempFilter;
+                            var tempAggr = {};
+                            tempAggr["type"] = this.target.currentAggregator.aggrType;
+                            tempAggr["name"] = this.target.currentAggregator.aggrName;
+                            tempAggr["fieldName"] = this.target.currentAggregator.aggrFieldName;
+                            temp["aggregator"] = tempAggr;
+                            this.target.aggregator.push(temp);
                         }
-                        this.target.aggregators.push(this.target.currentAggregator);
+                        else {
+                            this.target.aggregators.push(this.target.currentAggregator);
+                        }
                         this.clearCurrentAggregator();
                         this.addAggregatorMode = false;
                     }

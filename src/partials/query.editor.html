@@ -401,7 +401,7 @@
         </div>
         <div ng-switch-when="filtered">
           <label class="gf-form-label">
-            {{aggregator.type}}:&nbsp;filter
+            {{aggregator.type}}:&nbsp;filterType&nbsp;=&nbsp;{{aggregator.filterType}},&nbsp;filterDimension&nbsp;=&nbsp;{{aggregator.filterDimension}},&nbsp;filterValue&nbsp;=&nbsp;{{aggregator.filterValue}},&nbsp;aggrType&nbsp;=&nbsp;{{aggregator.aggrType}},&nbsp;aggrName&nbsp;=&nbsp;{{aggregator.aggrName}},&nbsp;aggrFieldName&nbsp;=&nbsp;{{aggregator.aggrFieldName}}
             <a ng-click="ctrl.editAggregator($index)">
               <i class="fa fa-pencil"></i>
             </a>
@@ -477,8 +477,12 @@
       <input type="text" ng-switch-when="thetaSketch" class="input-small gf-form-input width-10" spellcheck='false' ng-model="ctrl.target.currentAggregator.size" ng-blur="ctrl.targetBlur()" placeholder="size" data-min-length=0>
     </div>
     <div class="gf-form" ng-show="ctrl.addAggregatorMode" ng-switch on="ctrl.target.currentAggregator.type">
-      <input type="text" ng-switch-when="filtered" class="input-small gf-form-input width-15" spellcheck='false' ng-model="ctrl.target.currentAggregator.filterSpec" placeholder="filter" ng-blur="ctrl.targetBlur()">
-      <input type="text" ng-switch-when="filtered" class="input-small gf-form-input width-15" spellcheck='false' ng-model="ctrl.target.currentAggregator.aggrSpec" placeholder="aggregator" ng-blur="ctrl.targetBlur()">
+      <input type="text" ng-switch-when="filtered" class="input-small gf-form-input width-7" spellcheck='false' ng-model="ctrl.target.currentAggregator.filterType" placeholder="filterType" ng-blur="ctrl.targetBlur()">
+      <input type="text" ng-switch-when="filtered" class="input-small gf-form-input width-7" spellcheck='false' ng-model="ctrl.target.currentAggregator.filterDimension" placeholder="filterDimension" ng-blur="ctrl.targetBlur()">
+      <input type="text" ng-switch-when="filtered" class="input-small gf-form-input width-7" spellcheck='false' ng-model="ctrl.target.currentAggregator.filterValue" placeholder="filterValue" ng-blur="ctrl.targetBlur()">
+      <input type="text" ng-switch-when="filtered" class="input-small gf-form-input width-7" spellcheck='false' ng-model="ctrl.target.currentAggregator.aggrType" placeholder="aggrType" ng-blur="ctrl.targetBlur()">
+      <input type="text" ng-switch-when="filtered" class="input-small gf-form-input width-7" spellcheck='false' ng-model="ctrl.target.currentAggregator.aggrName" placeholder="aggrName" ng-blur="ctrl.targetBlur()">
+      <input type="text" ng-switch-when="filtered" class="input-small gf-form-input width-7" spellcheck='false' ng-model="ctrl.target.currentAggregator.aggrFieldName" placeholder="aggrFieldName" ng-blur="ctrl.targetBlur()">
     </div>
     <div class="gf-form" ng-show="ctrl.addAggregatorMode">
       <label class="gf-form-label">
