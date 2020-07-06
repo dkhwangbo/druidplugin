@@ -238,11 +238,10 @@ System.register(['lodash', './sdk/sdk'], function(exports_1) {
                     if (!this.target.errors.currentAggregator) {
                         //Add new aggregator to the list
                         if (this.target.currentAggregator.type === "filtered") {
-                            this.target.aggregators.push(JSON.stringify(this.target.currentAggregator));
+                            this.target.currentAggregator.filterSpec = JSON.stringify(this.target.currentAggregator.filterSpec);
+                            this.target.currentAggregator.aggrSpec = JSON.stringify(this.target.currentAggregator.aggrSpec);
                         }
-                        else {
-                            this.target.aggregators.push(this.target.currentAggregator);
-                        }
+                        this.target.aggregators.push(this.target.currentAggregator);
                         this.clearCurrentAggregator();
                         this.addAggregatorMode = false;
                     }
