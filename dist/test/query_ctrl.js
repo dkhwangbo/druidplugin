@@ -227,26 +227,26 @@ var DruidQueryCtrl = (function (_super) {
         this.target.errors = this.validateTarget();
         if (!this.target.errors.currentAggregator) {
             //Add new aggregator to the list
-            if (this.target.currentAggregator.type === "filtered") {
-                var temp;
-                temp = {
-                    type: this.target.currentAggregator.type,
-                    filter: {
-                        type: this.target.currentAggregator.filterType,
-                        dimension: this.target.currentAggregator.filterDimension,
-                        value: this.target.currentAggregator.filterValue
-                    },
-                    aggregator: {
-                        type: this.target.currentAggregator.aggrType,
-                        name: this.target.currentAggregator.aggrName,
-                        fieldName: this.target.currentAggregator.aggrFieldName
-                    }
-                };
-                this.target.aggregators.push(temp);
-            }
-            else {
-                this.target.aggregators.push(this.target.currentAggregator);
-            }
+            // if (this.target.currentAggregator.type === "filtered") {
+            //   var temp: any;
+            //   temp = {
+            //       type: this.target.currentAggregator.type,
+            //       filter: {
+            //           type: this.target.currentAggregator.filterType,
+            //           dimension: this.target.currentAggregator.filterDimension,
+            //           value: this.target.currentAggregator.filterValue
+            //       },
+            //       aggregator: {
+            //           type: this.target.currentAggregator.aggrType,
+            //           name: this.target.currentAggregator.aggrName,
+            //           fieldName: this.target.currentAggregator.aggrFieldName
+            //       }
+            //   };
+            //   this.target.aggregators.push(temp);
+            // } else {
+            //   this.target.aggregators.push(this.target.currentAggregator);
+            // }
+            this.target.aggregators.push(this.target.currentAggregator);
             this.clearCurrentAggregator();
             this.addAggregatorMode = false;
         }
