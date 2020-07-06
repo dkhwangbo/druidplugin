@@ -166,7 +166,12 @@ System.register(['lodash', './sdk/sdk'], function(exports_1) {
                     this.target.errors = this.validateTarget();
                     if (!this.target.errors.currentFilter) {
                         //Add new filter to the list
-                        this.target.filters.push(this.target.currentFilter);
+                        if (this.target.currentFilter.type.isEqualWith("filtered")) {
+                            this.target.filters.push(JSON.stringify(this.target.currentFilter));
+                        }
+                        else {
+                            this.target.filters.push(this.target.currentFilter);
+                        }
                         this.clearCurrentFilter();
                         this.addFilterMode = false;
                     }
