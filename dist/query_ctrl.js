@@ -237,8 +237,8 @@ System.register(['lodash', './sdk/sdk'], function(exports_1) {
                     this.target.errors = this.validateTarget();
                     if (!this.target.errors.currentAggregator) {
                         //Add new aggregator to the list
-                        if (this.target.currentFilter.type === "filtered") {
-                            this.target.aggregators.push(JSON.stringify(this.target.currentFilter));
+                        if (this.target.currentAggregator.type === "filtered") {
+                            this.target.aggregators.push(JSON.stringify(this.target.currentAggregator));
                         }
                         else {
                             this.target.aggregators.push(this.target.currentAggregator);
