@@ -228,7 +228,8 @@ var DruidQueryCtrl = (function (_super) {
         if (!this.target.errors.currentAggregator) {
             //Add new aggregator to the list
             if (this.target.currentAggregator.type === "filtered") {
-                var temp = {
+                var temp;
+                temp = {
                     type: this.target.currentAggregator.type,
                     filter: {
                         type: this.target.currentAggregator.filterType,

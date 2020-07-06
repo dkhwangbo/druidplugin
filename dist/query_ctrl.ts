@@ -277,7 +277,8 @@ export class DruidQueryCtrl extends QueryCtrl {
       if (!this.target.errors.currentAggregator) {
         //Add new aggregator to the list
         if (this.target.currentAggregator.type === "filtered") {
-          let temp = {
+          var temp: any;
+          temp = {
               type: this.target.currentAggregator.type,
               filter: {
                   type: this.target.currentAggregator.filterType,
