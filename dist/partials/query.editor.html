@@ -401,7 +401,7 @@
         </div>
         <div ng-switch-when="filtered">
           <label class="gf-form-label">
-            {{aggregator.type}}:&nbsp;filterType&nbsp;=&nbsp;{{aggregator.filterType}},&nbsp;filterDimension&nbsp;=&nbsp;{{aggregator.filterDimension}},&nbsp;filterValue&nbsp;=&nbsp;{{aggregator.filterValue}},&nbsp;aggrType&nbsp;=&nbsp;{{aggregator.aggrType}},&nbsp;aggrName&nbsp;=&nbsp;{{aggregator.aggrName}},&nbsp;aggrFieldName&nbsp;=&nbsp;{{aggregator.aggrFieldName}}
+            {{aggregator.type}}:&nbsp;filterType&nbsp;=&nbsp;{{aggregator.filter.filterType}},&nbsp;filterDimension&nbsp;=&nbsp;{{aggregator.filter.filterDimension}},&nbsp;filterValue&nbsp;=&nbsp;{{aggregator.filter.filterValue}},&nbsp;aggrType&nbsp;=&nbsp;{{aggregator.aggregator.aggrType}},&nbsp;aggrName&nbsp;=&nbsp;{{aggregator.aggregator.aggrName}},&nbsp;aggrFieldName&nbsp;=&nbsp;{{aggregator.aggregator.aggrFieldName}}
             <a ng-click="ctrl.editAggregator($index)">
               <i class="fa fa-pencil"></i>
             </a>
@@ -483,6 +483,7 @@
       <input type="text" ng-switch-when="filtered" class="input-small gf-form-input width-7" spellcheck='false' ng-model="ctrl.target.currentAggregator.aggrType" placeholder="aggrType" ng-blur="ctrl.targetBlur()">
       <input type="text" ng-switch-when="filtered" class="input-small gf-form-input width-7" spellcheck='false' ng-model="ctrl.target.currentAggregator.aggrName" placeholder="aggrName" ng-blur="ctrl.targetBlur()">
       <input type="text" ng-switch-when="filtered" class="input-small gf-form-input width-7" spellcheck='false' ng-model="ctrl.target.currentAggregator.aggrFieldName" placeholder="aggrFieldName" ng-blur="ctrl.targetBlur()">
+      <gf-form-switch ng-switch-when="filtered" class="gf-form" label="Hidden" label-class="query-keyword" checked="ctrl.target.currentAggregator.hidden"></gf-form-switch>
     </div>
     <div class="gf-form" ng-show="ctrl.addAggregatorMode">
       <label class="gf-form-label">
