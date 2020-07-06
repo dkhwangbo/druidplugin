@@ -252,7 +252,7 @@ System.register(['lodash', './sdk/sdk'], function(exports_1) {
                                     fieldName: this.target.currentAggregator.aggrFieldName
                                 }
                             };
-                            this.target.aggregator.push(temp);
+                            this.target.aggregators.push(temp);
                         }
                         else {
                             this.target.aggregators.push(this.target.currentAggregator);

@@ -291,7 +291,7 @@ export class DruidQueryCtrl extends QueryCtrl {
                   fieldName: this.target.currentAggregator.aggrFieldName
               }
           };
-          this.target.aggregator.push(temp);
+          this.target.aggregators.push(temp);
         } else {
           this.target.aggregators.push(this.target.currentAggregator);
         }

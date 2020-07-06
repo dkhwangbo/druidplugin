@@ -242,7 +242,7 @@ var DruidQueryCtrl = (function (_super) {
                         fieldName: this.target.currentAggregator.aggrFieldName
                     }
                 };
-                this.target.aggregator.push(temp);
+                this.target.aggregators.push(temp);
             }
             else {
                 this.target.aggregators.push(this.target.currentAggregator);
