@@ -156,12 +156,7 @@ var DruidQueryCtrl = (function (_super) {
         this.target.errors = this.validateTarget();
         if (!this.target.errors.currentFilter) {
             //Add new filter to the list
-            if (this.target.currentFilter.type.isEqualWith("filtered")) {
-                this.target.filters.push(JSON.stringify(this.target.currentFilter));
-            }
-            else {
-                this.target.filters.push(this.target.currentFilter);
-            }
+            this.target.filters.push(this.target.currentFilter);
             this.clearCurrentFilter();
             this.addFilterMode = false;
         }
@@ -232,7 +227,12 @@ var DruidQueryCtrl = (function (_super) {
         this.target.errors = this.validateTarget();
         if (!this.target.errors.currentAggregator) {
             //Add new aggregator to the list
-            this.target.aggregators.push(this.target.currentAggregator);
+            if (this.target.currentFilter.type === "filtered") {
+                this.target.aggregators.push(JSON.stringify(this.target.currentFilter));
+            }
+            else {
+                this.target.aggregators.push(this.target.currentAggregator);
+            }
             this.clearCurrentAggregator();
             this.addAggregatorMode = false;
         }
