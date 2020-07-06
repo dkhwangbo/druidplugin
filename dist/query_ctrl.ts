@@ -487,7 +487,6 @@ export class DruidQueryCtrl extends QueryCtrl {
 
     validateFilteredAggregator(target) {
       // pass
-
       return null;
     }
 
