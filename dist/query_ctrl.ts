@@ -504,12 +504,7 @@ export class DruidQueryCtrl extends QueryCtrl {
     }
 
     validateFilteredAggregator(target) {
-      if (!target.currentAggregator.filterSpec) {
-        return "Must provide a filter for filtered aggregator.";
-      }
-      if (!target.currentAggregator.aggrSpec) {
-        return "Must provide an aggregator for filtered aggregator.";
-      }
+      // pass
 
       return null;
     }

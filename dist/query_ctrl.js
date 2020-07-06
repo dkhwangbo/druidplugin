@@ -443,12 +443,7 @@ System.register(['lodash', './sdk/sdk'], function(exports_1) {
                     return null;
                 };
                 DruidQueryCtrl.prototype.validateFilteredAggregator = function (target) {
-                    if (!target.currentAggregator.filterSpec) {
-                        return "Must provide a filter for filtered aggregator.";
-                    }
-                    if (!target.currentAggregator.aggrSpec) {
-                        return "Must provide an aggregator for filtered aggregator.";
-                    }
+                    // pass
                     return null;
                 };
                 DruidQueryCtrl.prototype.validateSimplePostAggregator = function (type, target) {
