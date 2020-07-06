@@ -228,18 +228,19 @@ var DruidQueryCtrl = (function (_super) {
         if (!this.target.errors.currentAggregator) {
             //Add new aggregator to the list
             if (this.target.currentAggregator.type === "filtered") {
-                var temp = {};
-                temp["type"] = this.target.currentAggregator.type;
-                var tempFilter = {};
-                tempFilter["type"] = this.target.currentAggregator.filterType;
-                tempFilter["dimension"] = this.target.currentAggregator.filterDimension;
-                tempFilter["value"] = this.target.currentAggregator.filterValue;
-                temp["filter"] = tempFilter;
-                var tempAggr = {};
-                tempAggr["type"] = this.target.currentAggregator.aggrType;
-                tempAggr["name"] = this.target.currentAggregator.aggrName;
-                tempAggr["fieldName"] = this.target.currentAggregator.aggrFieldName;
-                temp["aggregator"] = tempAggr;
+                var temp = {
+                    type: this.target.currentAggregator.type,
+                    filter: {
+                        type: this.target.currentAggregator.filterType,
+                        dimension: this.target.currentAggregator.filterDimension,
+                        value: this.target.currentAggregator.filterValue
+                    },
+                    aggregator: {
+                        type: this.target.currentAggregator.aggrType,
+                        name: this.target.currentAggregator.aggrName,
+                        fieldName: this.target.currentAggregator.aggrFieldName
+                    }
+                };
                 this.target.aggregator.push(temp);
             }
             else {
